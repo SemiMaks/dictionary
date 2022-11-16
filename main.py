@@ -23,10 +23,10 @@ def greeting(ch):
         answer = int(input())
         if answer < 0:
             print("Введите пожалуйста положительное число.")
-            greeting()
+            greeting(ch)
         elif answer > 50:
             print("Слишком большое число\nЯ беспокоюсь о вас\nВведите пожалуйста меньшее число.")
-            greeting()
+            greeting(ch)
         else:
             print("Ваш выбор: ", answer, "слов(а). Удачи!")
             if ch == 1:
