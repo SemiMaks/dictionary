@@ -39,6 +39,7 @@ def greeting(ch):
 
 def train(answer, ch):
     try:
+        word, key = [], []
         count = 0
         for i in range(answer):
             if ch == 1:
@@ -67,3 +68,4 @@ def train(answer, ch):
 
 
 change()
+input()
