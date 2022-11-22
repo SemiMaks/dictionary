@@ -1,43 +1,63 @@
-from words import words
 import random
 
-print("Добро пожаловать в наш тренажёр!")
+from words import words
 
 
-def change():
+def names():
     try:
-        print(
-            "Выберите режим перевода.\nПереводим с английского языка на русский (1) или с русского на английский (2):")
+        print("\nДобро пожаловать в наш тренажёр!\n")
+        name = input("Как можно к вам обращаться?\n")
+        name = name.capitalize()
+        print(f"Привет, {name}!")
+        change(name)
+    except Exception as eror:
+        print("Ошибка при знакомстве"), eror
+
+
+def change(name):
+    try:
+        print(f"{name}, пора выбрать режим перевода.")
+        print("Переводим с английского языка на русский - (1), с русского на английский - (2)")
+        print("а для просмотра всего словаря нажмите - (3):")
         ch = int(input())
-        if (ch <= 0) or (ch > 2):
-            print("Выберите пожалуйста '1' или '2'!")
-            change()
+        if (ch <= 0) or (ch > 3):
+            print(f"{name}, выберите пожалуйста '1' или '2'!")
+            change(name)
+        elif ch == 3:
+            show_to_dictionary(name)
         else:
             print("Ваш выбор,- ", ch)
-            greeting(ch)
+            greeting(ch, name)
     except Exception as eror:
         print("Ошибка работы программы,", eror)
 
 
-def greeting(ch):
+def show_to_dictionary(name):
+    print("Словарь: ")
+    for k, v in words.items():
+        print(f"\t{k} - {v}")
+    print(f"Хорошего дня, {name}!")
+
+
+def greeting(ch, name):
     try:
-        print("Сколько слов готовы перевести?:")
+        print(f"{name}, сколько слов готовы перевести?:")
         answer = int(input())
         if answer < 0:
             print("Введите пожалуйста положительное число.")
-            greeting(ch)
+            greeting(ch, name)
         elif answer > 50:
             print("Слишком большое число\nЯ беспокоюсь о вас\nВведите пожалуйста меньшее число.")
-            greeting(ch)
+            greeting(ch, name)
         else:
             print("Ваш выбор: ", answer, "слов(а). Удачи!")
-            train(answer, ch)
+            train(answer, ch, name)
 
     except Exception as eror:
         print("Работа программы вызвала ошибку:", eror)
 
 
-def train(answer, ch):
+def train(answer, ch, name):
     try:
         word, key = [], []
         count = 0
@@ -64,8 +84,8 @@ def train(answer, ch):
     except Exception as eror:
         print("Работа программы прервана ошибкой ", eror)
     finally:
-        print("Работа программы успешно завершена, удачи!")
+        print(f"{name}Работа программы успешно завершена, удачи!")
 
 
-change()
-input()
+names()
+input("\nДля выхода из программы нажмите клавишу Ввод")
