@@ -11,7 +11,7 @@ def names():
         print(f"Привет, {name}!")
         change(name)
     except Exception as eror:
-        print("Ошибка при знакомстве"), eror
+        print("Ошибка при знакомстве", eror)
 
 
 def change(name):
