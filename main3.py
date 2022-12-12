@@ -8,22 +8,24 @@ def main():
     try:
         name = names()
         ch = change(name)
-        answer = number_of_words(name)
+        answer = number_of_words()
         train(answer, ch, name)
     except Exception as eror:
-        print("Ошибка при вызове функции знакомства"), eror
+        print("Ошибка при вызове основной функции программы", eror)
 
 
 def names():
     """Функция возвращает имя пользователя"""
     try:
-        print("\nДобро пожаловать в наш тренажёр!")
+        print('-' * 36)
+        print("| Добро пожаловать в наш тренажёр! |")
+        print('-' * 36)
         name = input("Как можно к вам обращаться?\n")
         name = name.capitalize()
         print(f"Привет, {name}!")
         return name
     except Exception as eror:
-        print("Ошибка при знакомстве"), eror
+        print("Ошибка при знакомстве", eror)
 
 
 def change(name):
@@ -42,39 +44,41 @@ def change(name):
             print(f"{name}, ваш выбор - ", ch)
             return ch
     except Exception as eror:
-        print("Ошибка работы программы,", eror)
+        print("Ошибка при выборе режима работы программы,", eror)
 
 
 def show_to_dictionary(name):
     """Функция показывает словарь"""
-    print("Показываю текущий словарь: \n")
-    for k, v in words.items():
-        print(f"\t{k} - {v}")
-    print(f"\nХорошего дня, {name}!")
-    input("\nДля завершения работы программы нажмите клавишу (Ввод)")
-    exit()
+    try:
+        print("Просмотр текущего словаря: \n")
+        for k, v in words.items():
+            print(f"\t{k} - {v}")
+        print(f"\nХорошего дня, {name}!")
+        input("\nДля завершения работы программы нажмите клавишу (Ввод)")
+        exit()
+    except Exception as eror:
+        print("Ошибка просмотра текущего словаря, ", eror)
 
 
-def number_of_words(name):
+def number_of_words():
     """Функция возвращает количество слов для перевода"""
     try:
         print(f"Сколько слов готовы перевести?:")
         answer = int(input())
         if answer < 0:
             print("Введите пожалуйста положительное число.")
-            number_of_words(name)
+            number_of_words()
         elif answer == 0:
             print("Введите пожалуйста больше 0.")
-            number_of_words(name)
+            number_of_words()
         elif answer > 50:
             print("Слишком большое число, я беспокоюсь о вас\nВведите пожалуйста меньшее число.")
-            number_of_words(name)
+            number_of_words()
         else:
             print("Ваш выбор: ", answer, "слов(а). Удачи!")
-            answer = int(answer)
             return answer
     except Exception as eror:
-        print("Работа программы вызвала ошибку:", eror)
+        print("Ошибка выбора количества слов для перевода,", eror)
 
 
 def train(answer, ch, name):
@@ -100,7 +104,7 @@ def train(answer, ch, name):
                 print("К сожалению вы ошиблись, и переводом слова -", word, "станет -", key)
                 print("Вы ввели правилный перевод -", count, " слов(а)")
 
-        print("\nВы перевели ", count, " слов из ", answer)
+        print("\nВы перевели ", count, " слов из ", answer, "!")
         if count == answer:
             print(f"{name}, поздравляю, ваш результат впечатляет!")
         elif count == answer - 1:
@@ -109,11 +113,11 @@ def train(answer, ch, name):
             print(f"{name}, что ж, неплохо! Но вам есть куда расти)")
 
     except Exception as eror:
-        print("Работа программы прервана ошибкой ", eror)
+        print("Работа программы прервана ошибкой при проверке перевода пользователя, ", eror)
     finally:
         print(f"\n{name}, работа программы успешно завершена, удачи!")
 
 
 if __name__ == "__main__":
     main()
-    input("\n\nДля выхода из программы нажмите клавишу (Ввод)")
+    input("\n\nДля завершения работы программы нажмите (Ввод)")
