@@ -36,8 +36,9 @@ def change(name):
         print("(((просто посмотреть словарь))) - (3)")
         ch = int(input())
         if (ch <= 0) or (ch > 3):
-            print("Выберите пожалуйста '1', '2' или '3'!")
-            change(name)
+            print("Выбирать нужно в диапазоне 1-3")
+            input("\nДля завершения работы программы нажмите клавишу (Ввод)")
+            exit()
         elif ch == 3:
             show_to_dictionary(name)
         else:
@@ -65,15 +66,10 @@ def number_of_words():
     try:
         print(f"Сколько слов готовы перевести?:")
         answer = int(input())
-        if answer < 0:
-            print("Введите пожалуйста положительное число.")
-            number_of_words()
-        elif answer == 0:
-            print("Введите пожалуйста больше 0.")
-            number_of_words()
-        elif answer > 50:
-            print("Слишком большое число, я беспокоюсь о вас\nВведите пожалуйста меньшее число.")
-            number_of_words()
+        if answer <= 0 or answer > 50:
+            print("Число должно быть положительным и больше 0")
+            input("\nДля завершения работы программы нажмите клавишу (Ввод)")
+            exit()
         else:
             print("Ваш выбор: ", answer, "слов(а). Удачи!")
             return answer
@@ -84,6 +80,7 @@ def number_of_words():
 def train(answer, ch, name):
     """Функция проверяет перевод пользователя"""
     try:
+        print(answer, ch, name)
         word, key = [], []
         count = 0
         for i in range(answer):
@@ -115,7 +112,7 @@ def train(answer, ch, name):
     except Exception as eror:
         print("Работа программы прервана ошибкой при проверке перевода пользователя, ", eror)
     finally:
-        print(f"\n{name}, работа программы успешно завершена, удачи!")
+        print("\nРабота программы успешно завершена, удачи!")
 
 
 if __name__ == "__main__":
